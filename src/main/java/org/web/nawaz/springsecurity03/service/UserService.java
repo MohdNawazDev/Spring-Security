@@ -32,7 +32,7 @@ public class UserService {
         }
 
         if(userRepository.existsByEmail(request.getEmail())) {
-            throw new Error("Username already exists " + request.getEmail());
+            throw new Error("Email already exists " + request.getEmail());
         }
 
         Role userRole = roleRepository.findByName("USER")
@@ -69,13 +69,13 @@ public class UserService {
         }
 
         if(userRepository.existsByEmail(request.getEmail())) {
-            throw new Error("Username already exists " + request.getEmail());
+            throw new Error("Email already exists " + request.getEmail());
         }
 
       Role userRole =  roleRepository.findByName("USER")
                 .orElseGet(() -> {
                     return roleRepository.save(Role.builder()
-                                    .name("USER")
+                                    .name("ROLE_USER")
                                     .description("Standard User")
                             .build());
                 });
@@ -83,7 +83,7 @@ public class UserService {
       Role adminRole = roleRepository.findByName("ADMIN")
               .orElseGet(() -> {
                   return roleRepository.save(Role.builder()
-                                  .name("Admin")
+                                  .name("ROLE_ADMIN")
                                   .description("Admin User")
                           .build());
               });
@@ -91,7 +91,7 @@ public class UserService {
         User admin = User.builder()
                 .username(request.getUsername())
                 .email(request.getEmail())
-                .password(request.getPassword())
+                .password(passwordEncoder.encode(request.getPassword()))
                 .fullName(request.getFullName())
                 .enabled(true)
                 .accountNonLocked(true)

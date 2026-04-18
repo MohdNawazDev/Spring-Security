@@ -49,7 +49,7 @@ public class AuthController {
     public ResponseEntity<Map<String, Object>> registerAdmin(@Valid @RequestBody RegisterRequest request)
     {
         try {
-            User user = userService.RegisterUser(request);
+            User user = userService.RegisterAdmin(request);
             Map<String, Object> response = new HashMap<>();
 
             response.put("success",true);

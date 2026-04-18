@@ -31,7 +31,7 @@ public class CustomUserDetailService implements UserDetailsService {
         System.out.println("Custom load by Username running..");
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
-
+        System.out.println("User Found...");
         return buildUserDetails(user);
     }
 

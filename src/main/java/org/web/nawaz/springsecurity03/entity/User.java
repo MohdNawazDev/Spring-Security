@@ -15,16 +15,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true, length = 35)
     private String username;
 
-    @Column(unique = true, length = 20)
     private String password;
 
     @Column(nullable = false)
     private String email;
 
-    @Column(length = 100)
     private String fullName;
 
     @Column(nullable = false)
@@ -143,6 +140,21 @@ public class User {
         return new UserBuilder();
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", enabled=" + enabled +
+                ", accountNonLocked=" + accountNonLocked +
+                ", createdAt=" + createdAt +
+                ", roles=" + roles +
+                '}';
+    }
+
     //making our own custom builder
     public static class UserBuilder {
         private String username;
@@ -194,6 +206,7 @@ public class User {
             user.setUsername(username);
             user.setEmail(email);
             user.setPassword(password);
+            user.setFullName(fullName);
             user.setEnabled(enabled);
             user.setAccountNonLocked(accountNonLocked);
 

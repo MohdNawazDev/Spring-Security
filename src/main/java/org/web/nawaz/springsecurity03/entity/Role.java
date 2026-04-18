@@ -36,7 +36,7 @@ public class Role {
 
     private Role(String username, String description)
     {
-        this.name = name;
+        this.name = username;
         this.description = description;
     }
 
